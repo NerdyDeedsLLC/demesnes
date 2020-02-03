@@ -1,0 +1,142 @@
+/* RESETS */
+body {
+  width: 320px;
+}
+body.options-page {
+  width: 400px;
+}
+a {
+  outline: 0;
+}
+input {
+  box-sizing: border-box;
+  width: 100%;
+  font: inherit;
+}
+[hidden] {
+  display: none;
+}
+
+/**
+ * HEADER
+ */
+.options {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5em 0;
+}
+button {
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  user-select: none;
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  box-shadow: none;
+  background-color: transparent;
+  border: none;
+  outline: 0;
+  text-decoration: none;
+  color: inherit;
+  text-align: left;
+  padding: 0;
+}
+.options * {
+  text-decoration: none;
+  color: inherit;
+  padding: 0.5em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+.options *:hover {
+  color: black;
+  background-color: #d9d9d9;
+}
+
+/**
+ * LIST
+ */
+#extList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ext {
+  display: flex;
+  white-space: nowrap;
+  font-size: 1.2em;
+  line-height: 1.8;
+  font-weight: bolder;
+  border-bottom: 1px solid #eee;
+}
+.ext:last-child {
+  border-bottom: none;
+}
+.ext.disabled {
+  font-weight: normal;
+  color: gray;
+  filter: grayscale(100%);
+}
+
+.ext.disabled .extOptions {
+  display: none;
+}
+.ext.disabled + .disabled {
+  margin-top: 0;
+}
+.ext.type-development {
+  color: #4170C3;
+}
+.ext.type-admin {
+  color: #C32700;
+}
+.extName {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ext img {
+  width: 16px;
+  height: 16px;
+  vertical-align: -3px;
+}
+.extIcon {
+  margin-right: 0.3em;
+}
+
+.ext.disabled .extIcon {
+  filter: brightness(150%);
+  opacity: 0.5;
+}
+
+.ext > *:not(:first-child) {
+  padding: 0 0.3em;
+  opacity: 0.2;
+}
+.ext:hover > * {
+  opacity: 1;
+}
+.ext a:hover,
+.ext button:hover {
+  background-color: #ecf0f1;
+  cursor: pointer;
+}
+.ext :before {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: -3px;
+}
+.extOptions:before {
+  content: url(icons/options.svg);
+}
+.extMore:before {
+  content: url(icons/ellipsis.svg);
+}
+.extUrl:before {
+  content: url(icons/globe.svg);
+}
+.extUninstall:before {
+  content: url(icons/bin.svg);
+}

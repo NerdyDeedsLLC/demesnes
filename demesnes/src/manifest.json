@@ -1,0 +1,22 @@
+{
+  "name": "Demesnes",
+  "description": "Autmoatically enable/disable extensions based on the domain being visited.",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "homepage_url": "https://github.com/NerdyDeedsLLC/Demesnes",
+  "default_locale": "en",
+  "permissions": [
+    "management"
+  ],
+  "icons": {
+    "16": "logo.png",
+    "128": "logo.png"
+  },
+  "browser_action": {
+    "default_icon": "logo.png",
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html"
+  }
+}
