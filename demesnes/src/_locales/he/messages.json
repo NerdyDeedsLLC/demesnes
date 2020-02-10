@@ -1,0 +1,32 @@
+{
+  "extName": {
+    "message": "אחת לחץ מנהל הרחבות"
+  },
+  "extDesc": {
+    "message": "ניהול השלוחה שלך בלחיצה אחת"
+  },
+  "clkEnable": {
+    "message": "לחץ כדי להפעיל את התוסף"
+  },
+  "clkDisable": {
+    "message": "לחץ כדי להשבית תוסף זה"
+  },
+  "extensionPage": {
+    "message": "עוד ..."
+  },
+  "disAll": {
+    "message": "השבת את כל התוספים"
+  },
+  "searchTxt": {
+    "message": "חפש הרחבות"
+  },
+  "gotoOpt": {
+    "message": "עבור אל אפשרויות דף"
+  },
+  "uninstall": {
+    "message": "לבטל את התקנת ההרחבה"
+  },
+  "enableAll": {
+    "message": "Enable all"
+  }
+}

@@ -15,17 +15,17 @@ let escapeCssId = id => id.replace(/[@.]/g, '\\$0');
 let qs                   = (q, scp=document) => scp.querySelector(q); 
 let qsa                  = (q, scp=document) => [...scp.querySelectorAll(q)]; 
 let searchField          = `<input id="searchField" placeholder="Search Extensions..." />`;
-let options              = '<div id="options" class="options"></div>';
 let eul                  = '<ul id="extList"></ul>';
-let extensionPageButton  = `<a id="extensionPageButton" href="chrome://extensions">Chrome Extension Page</a>`;
-let disableAllButton     = `<button id="disableAllButton">Deactivate All</button>`;
-let enableAllButton      = `<button id="enableAllButton">Activate All</button>`;
 
-options += disableAllButton
-         + enableAllButton
-         + extensionPageButton;
+let optionsPanelMarkup   = `<div id="options" class="options">
+                                <span id="bulkOptions" class="bulkButtons">
+                                    <button id="enableAllButton">Enable All</button>
+                                    <button id="disableAllButton">Disable All</button>
+                                </span>
+                                <a id="extensionPageButton" href="chrome://extensions">Get More Extensions</a>
+                            </div>`;
 
-window.document.body.insertAdjacentHTML('afterbegin', searchField + options + eul);
+window.document.body.insertAdjacentHTML('afterbegin', searchField + optionsPanelMarkup + eul);
 
 let $searchField         = qs('#searchField');
 let $extULNode           = qs('#extList');
@@ -50,7 +50,7 @@ getExtensions(extensions => {
 	})
     .map(createList);
     $extULNode.insertAdjacentHTML('beforeEnd', listHTML.join(''));
-    
+    qsa('.ext',$extULNode).forEach(ext=>ext.addEventListener('click', toggleExt));
 });
 
 /**
@@ -149,6 +149,60 @@ function createList(e) {
                 </li>
 	`;
 }
+
+function getTogglerParentmostNode(node){
+    console.log(node, node.tagName, !/ul|body|html/i.test(node.tagName))
+    if(/ul|body|html/i.test(node.tagName)) return null;
+    if(!/li class="ext.+?id=/i.test(node.outerHTML)) return getTogglerParentmostNode(node.parentNode);
+    return node;
+}
+
+function getExtDataObj(extID) {
+    return new Promise( (resolve, reject) => 
+        cme.get(
+            extID, 
+            obj => { 
+                resolve(Object.assign({}, obj)) 
+            }
+        )
+    )
+}
+
+function toggleExt(e, trg=e.target, parent=getTogglerParentmostNode(trg)) {
+    let disEn = [' disabled', ' enabled'];
+    let extChromeID = parent.id;
+    if(!extChromeID)  return false;
+    getExtDataObj(extChromeID)
+    .then(dataObj=>{
+        let newEnabledState = !dataObj.enabled;
+        cme.setEnabled(dataObj.id, newEnabledState);
+        parent.className = parent.className.replace(/ (dis|en)abled/gi, '') + disEn[+newEnabledState];
+    })
+}
+    // return 
+    
+    // if(extsDOMNode == null) return null;
+    // let extChromeID = extDOMNode.id;
+
+
+
+    //     extsEnabled = 
+    // console.log('extID :', extID);
+
+    // if(extID) cme.get(extID, extObj => {
+        // console.log(extObj)
+		// let wereEnabled   = extensions.filter(ext => enable ? !ext.enabled : ext.enabled);
+		// let selector      = wereEnabled.map(ext => '#' + escapeCssId(ext.id)).join(',');
+        // let $wereEnabled  = $(selector)
+
+        // wereEnabled.forEach(extension => {
+        //     cme.setEnabled(extension.id, enable);
+        //     let extObj = qs('#' + extension.id);
+        //     extObj.classList.remove('disabled')
+        //     if(enable) extObj.classList.add('disabled')
+        // });
+	// });
+
 
 function toggleAll(enable) {
 	getExtensions(extensions => {

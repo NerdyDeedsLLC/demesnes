@@ -1,6 +1,6 @@
 /* RESETS */
 body {
-  width: 320px;
+  width: 480px;
 }
 body.options-page {
   width: 400px;
@@ -42,16 +42,13 @@ button {
   text-align: left;
   padding: 0;
 }
-.options * {
-  text-decoration: none;
-  color: inherit;
-  padding: 0.5em;
-  text-transform: uppercase;
-  border-radius: 2px;
+
+#bulkOptions::before {
+  content:'⤹'
 }
-.options *:hover {
-  color: black;
-  background-color: #d9d9d9;
+
+#bulkOptions > button {
+    margin-left:10px;
 }
 
 /**

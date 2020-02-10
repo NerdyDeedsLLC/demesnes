@@ -1,0 +1,32 @@
+{
+  "extName": {
+    "message": "Administrador de extensión de un clic"
+  },
+  "extDesc": {
+    "message": "Administrar su extensión con un solo clic."
+  },
+  "clkEnable": {
+    "message": "Haga clic para activar esta extensión"
+  },
+  "clkDisable": {
+    "message": "Haga clic para deshabilitar esta extensión"
+  },
+  "extensionPage": {
+    "message": "Más ..."
+  },
+  "disAll": {
+    "message": "Deshabilitar todas las extensiones"
+  },
+  "searchTxt": {
+    "message": "Buscar las extensiones"
+  },
+  "gotoOpt": {
+    "message": "Ir a la página de opciones"
+  },
+  "uninstall": {
+    "message": "Desinstalar esta extensión"
+  },
+  "enableAll": {
+    "message": "Enable all"
+  }
+}
